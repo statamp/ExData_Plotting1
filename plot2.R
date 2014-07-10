@@ -1,5 +1,11 @@
 library(data.table)
 
+if (!file.exists("household_power_consumption.zip")) {
+    download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",
+                  destfile="household_power_consumption.zip", method="curl")
+    unzip("household_power_consumption.zip")
+}
+
 read.data <- function() {
     data <- fread("household_power_consumption.txt", colClasses="character")
     data <- as.data.frame(data)
